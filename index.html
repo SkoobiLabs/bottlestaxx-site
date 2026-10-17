@@ -91,19 +91,16 @@ section{padding-block:72px}
 .specs b{color:var(--ink);font-weight:500}
 @media (max-width:760px){.feats{grid-template-columns:1fr;gap:22px}.feat,.feat + .feat{padding:0;border:0}}
 
-/* fit */
-.fit{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start}
-@media (max-width:860px){.fit{grid-template-columns:1fr}}
-.panel{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:20px;display:grid;gap:16px;min-width:0}
-.field{display:grid;gap:6px}
-.field label{font-size:14px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
-.field output{font:500 15px var(--mono);color:var(--ink)}
-input[type=range]{width:100%;accent-color:var(--wine)}
-.result{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:8px;background:var(--glass-fill)}
-.result.no{background:color-mix(in srgb,var(--warn) 14%,transparent)}
-.pill{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:4px 9px;white-space:nowrap;background:var(--ok);color:var(--surface)}
-.result.no .pill{background:var(--warn)}
-.gauge svg{display:block;width:100%;height:auto}
+/* fit lineup */
+.lineup{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;align-items:end}
+@media (max-width:760px){.lineup{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:28px}}
+.bot{display:grid;gap:8px;justify-items:center;text-align:center;min-width:0}
+.bot svg{height:150px;width:auto;max-width:100%}
+.bot b{font:600 15px/1.2 var(--body)}
+.bot small{font:400 13px/1.3 var(--body);color:var(--muted)}
+.bot .yes{color:var(--ok);font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.bot .no{color:var(--warn);font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.bot.out svg{opacity:.55}
 
 /* packs */
 .packs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
@@ -150,7 +147,7 @@ footer{border-top:3px solid var(--ink);padding-block:28px 48px;display:flex;flex
     <a class="brand" href="#top" id="top">Bottle <b>Staxx</b></a>
     <ul>
       <li><a href="#stack">How it stacks</a></li>
-      <li><a href="#fit">Fit check</a></li>
+      <li><a href="#fit">Which bottles fit</a></li>
       <li><a href="#packs">Packs</a></li>
       <li><a href="#wineries">For wineries</a></li>
     </ul>
@@ -189,23 +186,13 @@ footer{border-top:3px solid var(--ink);padding-block:28px 48px;display:flex;flex
     <div class="specs" id="specs"></div>
   </section>
 
-  <section id="fit" class="shelf" aria-label="Fit check">
-    <div class="fit">
-      <div class="sechead" style="margin:0">
-        <span class="eyebrow">Fit check</span>
-        <h2>Will it hold your bottle?</h2>
-        <p class="lede">Most 750&nbsp;mL wine bottles measure 72 to 90&nbsp;mm across. Pick a style, or measure yours across the widest part of the body and slide to that number.</p>
-        <div class="gauge"><svg id="gauge" viewBox="0 0 320 64" role="img" aria-label="Diameter scale showing the range Bottle Staxx is built for"></svg></div>
-      </div>
-      <div class="panel">
-        <div class="chips" id="bottles" role="group" aria-label="Bottle style"></div>
-        <div class="field">
-          <label for="dia">Bottle diameter <output id="diaOut" for="dia">80 mm</output></label>
-          <input id="dia" type="range" min="60" max="100" step="0.5" value="80">
-        </div>
-        <div class="result" id="fitResult"><span class="pill" id="fitPill">Fits</span><span id="fitText"></span></div>
-      </div>
+  <section id="fit" class="shelf" aria-label="Which bottles fit">
+    <div class="sechead">
+      <span class="eyebrow">Which bottles fit</span>
+      <h2>The bottles you already buy</h2>
+      <p class="lede">Any standard 750&nbsp;mL wine bottle: Cabernet, Merlot, Pinot, Syrah, Chardonnay, most sparkling. If it came from a wine shelf in a normal-size bottle, it fits.</p>
     </div>
+    <div class="lineup" id="lineup"></div>
   </section>
 
   <section id="packs" class="shelf" aria-label="Packs">
@@ -279,7 +266,7 @@ footer{border-top:3px solid var(--ink);padding-block:28px 48px;display:flex;flex
 
 <script>
 // ---- Product constants: change these when the final design is picked ----
-const P = { angle:7.5, length:100, width:60, thick:23.8, fitMin:72, fitMax:90 };
+const P = { angle:7.5, length:100, width:60, thick:23.8 };
 const T = (d)=>Math.tan(d*Math.PI/180), S=(d)=>Math.sin(d*Math.PI/180), C=(d)=>Math.cos(d*Math.PI/180);
 const A = P.angle, L = P.length, t1 = P.thick, t0 = t1 - L*T(A);
 const BOTTLE = {d:80, H:300, body:175, shoulder:55, neck:30, cog:110};
@@ -376,46 +363,29 @@ if(!matchMedia("(prefers-reduced-motion: reduce)").matches){
 }
 
 document.getElementById("specs").innerHTML=
-  `<span><b>750 mL</b> bottles</span><span>Fits <b>${P.fitMin}–${P.fitMax} mm</b> across</span>`+
+  `<span>Fits standard <b>750 mL</b> wine bottles</span>`+
   `<span><b>${P.length} × ${P.width} mm</b> footprint</span><span>Neck-down <b>${A}°</b>, stacks to <b>0°</b> or <b>${2*A}°</b></span>`+
   `<span>PLA body · <b>TPU 90A</b> grip</span>`;
 
-// ---- Fit check ----
-const BOTTLES=[
-  {id:"cab", name:"Cabernet / Bordeaux", d:75},
-  {id:"syrah", name:"Syrah / Rhône", d:80},
-  {id:"burg", name:"Pinot / Chardonnay", d:81},
-  {id:"spark", name:"Sparkling", d:88},
+// ---- Which bottles fit: silhouettes to scale (mm) ----
+const LINEUP=[
+  {name:"Cabernet & Merlot", note:"Bordeaux bottle", d:75, H:300, body:190, sh:30, neck:29, ok:true},
+  {name:"Pinot & Chardonnay", note:"Burgundy bottle", d:81, H:295, body:150, sh:80, neck:30, ok:true},
+  {name:"Syrah & Rhône", note:"heavier glass", d:80, H:300, body:175, sh:55, neck:30, ok:true},
+  {name:"Sparkling", note:"most Champagne and Cava", d:88, H:300, body:165, sh:75, neck:30, ok:true},
+  {name:"Half bottles", note:"375 mL is too small", d:62, H:240, body:150, sh:45, neck:26, ok:false},
+  {name:"Magnums", note:"1.5 L is too big", d:105, H:350, body:220, sh:70, neck:34, ok:false},
 ];
-const dia=document.getElementById("dia"), bottlesEl=document.getElementById("bottles");
-BOTTLES.forEach(b=>{
-  const c=document.createElement("button"); c.type="button"; c.className="chip"; c.dataset.d=b.d; c.id="bottle-"+b.id;
-  c.innerHTML=`${b.name}<small>about ${b.d} mm</small>`;
-  c.addEventListener("click",()=>{dia.value=b.d; renderFit();});
-  bottlesEl.appendChild(c);
-});
-function renderFit(){
-  const d=+dia.value;
-  document.getElementById("diaOut").textContent=(d%1?d.toFixed(1):d)+" mm";
-  bottlesEl.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",+c.dataset.d===d?"true":"false"));
-  const ok=d>=P.fitMin && d<=P.fitMax, box=document.getElementById("fitResult");
-  box.classList.toggle("no",!ok);
-  document.getElementById("fitPill").textContent=ok?"Fits":"Outside range";
-  document.getElementById("fitText").textContent= ok
-    ? `A ${d} mm bottle rests on two grip strips in the saddle, clear of the hard plastic.`
-    : d<P.fitMin ? `At ${d} mm the bottle sits low in the curve and may touch the hard plastic. Tell us the bottle and we'll check it.`
-                 : `At ${d} mm the bottle is wider than the curve is built for and rides on its edges. Tell us the bottle and we'll check it.`;
-  // gauge
-  const lo=60, hi=100, x=v=>10+(v-lo)/(hi-lo)*300;
-  let g=`<rect x="${x(P.fitMin)}" y="18" width="${x(P.fitMax)-x(P.fitMin)}" height="14" rx="3" fill="var(--glass-fill)" stroke="var(--glass)"/>`;
-  g+=`<line x1="10" y1="25" x2="310" y2="25" stroke="var(--rule)" stroke-width="2"/>`;
-  for(let v=lo; v<=hi; v+=10) g+=`<text x="${x(v)}" y="52" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" fill="var(--muted)">${v}</text><line x1="${x(v)}" y1="34" x2="${x(v)}" y2="40" stroke="var(--muted)"/>`;
-  g+=`<text x="${(x(P.fitMin)+x(P.fitMax))/2}" y="12" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" fill="var(--glass)">built for ${P.fitMin}–${P.fitMax} mm</text>`;
-  g+=`<circle cx="${x(d)}" cy="25" r="6" fill="${ok?"var(--glass)":"var(--warn)"}" stroke="var(--surface)" stroke-width="2"/>`;
-  document.getElementById("gauge").innerHTML=g;
+function silhouette(b){
+  // upright bottle, base at y=0, drawn in mm; shared scale so sizes compare honestly
+  const r=b.d/2, n=b.neck/2, y1=b.body, y2=b.body+b.sh, lip=b.H-12;
+  const d=`M${-r+4},0 L${r-4},0 Q${r},0 ${r},-4 L${r},${-y1} C${r},${-(y1+b.sh*.6)} ${n},${-(y1+b.sh*.4)} ${n},${-y2} L${n},${-lip} L${n+2},${-lip} L${n+2},${-b.H} L${-n-2},${-b.H} L${-n-2},${-lip} L${-n},${-lip} L${-n},${-y2} C${-n},${-(y1+b.sh*.4)} ${-r},${-(y1+b.sh*.6)} ${-r},${-y1} L${-r},-4 Q${-r},0 ${-r+4},0 Z`;
+  return `<svg viewBox="-56 -356 112 360" aria-hidden="true"><path d="${d}" fill="${b.ok?"var(--glass-fill)":"transparent"}" stroke="${b.ok?"var(--glass)":"var(--muted)"}" stroke-width="2.5" stroke-dasharray="${b.ok?"none":"6 5"}"/></svg>`;
 }
-dia.addEventListener("input",renderFit);
-renderFit();
+document.getElementById("lineup").innerHTML=LINEUP.map(b=>`
+  <div class="bot${b.ok?"":" out"}">${silhouette(b)}
+    <span class="${b.ok?"yes":"no"}">${b.ok?"Fits":"Not these"}</span>
+    <b>${b.name}</b><small>${b.note}</small></div>`).join("");
 
 // ---- Packs ----
 function stackIcon(n){
