@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Cpolygon points=%224,50 60,50 60,22 4,38%22 fill=%22%23cfcad6%22 stroke=%22%231e1520%22 stroke-width=%223%22/%3E%3Crect x=%224%22 y=%2250%22 width=%2256%22 height=%226%22 fill=%22%238e1f4f%22/%3E%3C/svg%3E">
+<meta property="og:title" content="Bottle Staxx">
+<meta property="og:description" content="The smallest wine rack there is. Keeps the cork wet, stacks level or steep. Printed to order in Edmonds, WA.">
+<meta property="og:url" content="https://bottlestaxx.com/">
+<meta property="og:type" content="website">
+<style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Bottle Staxx</title>
+<meta name="description" content="Bottle Staxx: the smallest wine rack there is. A grippy wedge for one 750 mL bottle that stacks level or steep. Printed to order in Edmonds, Washington.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Commissioner:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one long shelf. Every section sits on a ruled "shelf line"; the hero's live stack demo is the one loud moment. */
+:root{
+  --bg:#eceaf0; --surface:#f7f6fa; --ink:#1e1520; --muted:#625868; --rule:#d3ceda;
+  --wine:#8e1f4f; --wine-ink:#ffffff; --glass:#2f5a45; --glass-fill:rgba(47,90,69,.18);
+  --pla:#cfcad6; --pla-edge:#8f879a; --ok:#2f5a45; --warn:#9a5310;
+  --display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --body:"Commissioner",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141016; --surface:#1d1720; --ink:#eee8f0; --muted:#a99ead; --rule:#362c3a;
+  --wine:#e2789f; --wine-ink:#1a0d13; --glass:#86bfa0; --glass-fill:rgba(134,191,160,.16);
+  --pla:#4a4350; --pla-edge:#7a7182; --ok:#86bfa0; --warn:#e3a35b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141016; --surface:#1d1720; --ink:#eee8f0; --muted:#a99ead; --rule:#362c3a;
+  --wine:#e2789f; --wine-ink:#1a0d13; --glass:#86bfa0; --glass-fill:rgba(134,191,160,.16);
+  --pla:#4a4350; --pla-edge:#7a7182; --ok:#86bfa0; --warn:#e3a35b; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:20px}
+a{color:inherit}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+.eyebrow{font:500 12px/1.2 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+h2{font:800 clamp(34px,5.4vw,58px)/.95 var(--display);text-transform:uppercase;letter-spacing:.005em}
+h3{font:600 19px/1.3 var(--body)}
+.lede{font-size:clamp(18px,2vw,21px);color:var(--muted);max-width:56ch}
+.shelf{border-top:3px solid var(--ink)}
+section{padding-block:72px}
+.sechead{display:grid;gap:12px;margin-bottom:36px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* nav */
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px;flex-wrap:wrap}
+.brand{font:900 22px/1 var(--display);letter-spacing:.04em;text-transform:uppercase;text-decoration:none}
+.brand b{color:var(--wine);font-weight:900}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.nav ul a{text-decoration:none;font-size:15px;color:var(--muted)}
+.nav ul a:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding-block:28px 40px;display:grid;gap:28px}
+.word{font:900 clamp(76px,17vw,210px)/.8 var(--display);text-transform:uppercase;letter-spacing:-.01em;display:grid;gap:.06em}
+.word span{display:block}
+.word .tilt{color:var(--wine);transform-origin:0 100%;transform:rotate(-7.5deg);margin-top:.12em}
+.herobot{display:flex;flex-wrap:wrap;gap:24px 40px;align-items:end;justify-content:space-between}
+.tag{font:600 clamp(22px,2.6vw,30px)/1.2 var(--body);max-width:22ch}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{font:600 16px var(--body);text-decoration:none;border-radius:6px;padding:13px 20px;border:2px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer;display:inline-block}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:focus-visible,.chip:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--wine);outline-offset:2px}
+
+/* demo */
+.demo{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:20px;display:grid;gap:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:500 15px var(--body);color:var(--ink);background:transparent;border:1.5px solid var(--rule);border-radius:999px;padding:8px 16px;cursor:pointer;text-align:left;line-height:1.25}
+.chip small{display:block;font:400 12px var(--mono);color:var(--muted)}
+.chip[aria-pressed="true"]{border-color:var(--wine);background:color-mix(in srgb,var(--wine) 12%,transparent)}
+.scene{width:100%;overflow:hidden}
+.scene svg{display:block;width:100%;height:auto}
+.st{opacity:0;transition:opacity .45s ease, transform .45s ease;transform:translateY(-6px)}
+.st.on{opacity:1;transform:none}
+.caption{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline;justify-content:space-between}
+.caption p{max-width:62ch}
+.angle{font:800 34px/1 var(--display);color:var(--wine)}
+
+/* features */
+.feats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.feat{padding:4px 24px 4px 0;display:grid;gap:8px;align-content:start;min-width:0}
+.feat + .feat{padding-left:24px;border-left:1px solid var(--rule)}
+.feat p{color:var(--muted);font-size:16px}
+.specs{margin-top:36px;display:flex;flex-wrap:wrap;gap:10px 28px;font:500 14px var(--mono);color:var(--muted);border-top:1px solid var(--rule);padding-top:16px}
+.specs b{color:var(--ink);font-weight:500}
+@media (max-width:760px){.feats{grid-template-columns:1fr;gap:22px}.feat,.feat + .feat{padding:0;border:0}}
+
+/* fit */
+.fit{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:860px){.fit{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:20px;display:grid;gap:16px;min-width:0}
+.field{display:grid;gap:6px}
+.field label{font-size:14px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.field output{font:500 15px var(--mono);color:var(--ink)}
+input[type=range]{width:100%;accent-color:var(--wine)}
+.result{display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:8px;background:var(--glass-fill)}
+.result.no{background:color-mix(in srgb,var(--warn) 14%,transparent)}
+.pill{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:4px 9px;white-space:nowrap;background:var(--ok);color:var(--surface)}
+.result.no .pill{background:var(--warn)}
+.gauge svg{display:block;width:100%;height:auto}
+
+/* packs */
+.packs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:760px){.packs{grid-template-columns:1fr}}
+.pack{background:var(--surface);border:1.5px solid var(--rule);border-radius:10px;padding:22px;display:grid;gap:10px;align-content:start;min-width:0}
+.pack.pick{border-color:var(--wine)}
+.pack .price{font:800 56px/1 var(--display)}
+.pack .per{font:400 13px var(--mono);color:var(--muted)}
+.pack p{color:var(--muted);font-size:15px}
+.badge{justify-self:start;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;background:var(--wine);color:var(--wine-ink);border-radius:4px;padding:3px 8px}
+.stackicon{height:38px;width:auto}
+
+/* forms */
+form{display:grid;gap:14px}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:620px){.row{grid-template-columns:1fr}}
+input[type=email],input[type=text],input[type=number],select,textarea{width:100%;font:400 16px var(--body);color:var(--ink);background:var(--bg);border:1.5px solid var(--rule);border-radius:6px;padding:11px 12px}
+textarea{min-height:96px;resize:vertical}
+.formnote{font-size:14px;color:var(--muted)}
+.status{font-size:15px;padding:12px 14px;border-radius:6px;background:var(--glass-fill)}
+
+/* wineries */
+.winery{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;align-items:start}
+@media (max-width:860px){.winery{grid-template-columns:1fr}}
+.uses{display:grid;gap:14px;margin-top:20px;padding:0;list-style:none}
+.uses li{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:baseline}
+.uses li span{font:500 13px var(--mono);color:var(--wine);min-width:7ch}
+
+/* faq */
+.faq{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 40px}
+@media (max-width:760px){.faq{grid-template-columns:1fr}}
+.faq div{display:grid;gap:6px;min-width:0}
+.faq p{color:var(--muted);font-size:16px}
+
+footer{border-top:3px solid var(--ink);padding-block:28px 48px;display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;color:var(--muted);font-size:14px}
+
+@media (prefers-reduced-motion: reduce){.st{transition:none}.word .tilt{transform:none}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="#top" id="top">Bottle <b>Staxx</b></a>
+    <ul>
+      <li><a href="#stack">How it stacks</a></li>
+      <li><a href="#fit">Fit check</a></li>
+      <li><a href="#packs">Packs</a></li>
+      <li><a href="#wineries">For wineries</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <h1 class="word" aria-label="Bottle Staxx"><span>Bottle</span><span class="tilt">Staxx</span></h1>
+    <div class="herobot">
+      <div style="display:grid;gap:12px">
+        <p class="tag">The smallest wine rack there is.</p>
+        <p class="lede">One bottle, any shelf, cork kept wet. A grippy wedge holds a 750&nbsp;mL bottle tipped slightly neck-down, so the wine stays against the cork. Stack two and it lies level, or turn one around and it leans steeper.</p>
+      </div>
+      <div class="ctas">
+        <a class="btn" href="#packs">Join the first batch</a>
+        <a class="btn ghost" href="#wineries">Logo runs for wineries</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="stack" class="demo" aria-label="How it stacks" style="padding-block:20px">
+    <div class="chips" id="modes" role="group" aria-label="Stack mode"></div>
+    <div class="scene"><svg id="scene" viewBox="-120 -178 410 186" role="img" aria-label="Side view of a wine bottle resting on Bottle Staxx wedges"></svg></div>
+    <div class="caption"><p id="modeText"></p><span class="angle" id="modeAngle"></span></div>
+  </section>
+
+  <section class="shelf" aria-label="Details" style="margin-top:72px">
+    <div class="sechead">
+      <span class="eyebrow">Built small, built to hold</span>
+      <h2>Cork wet.<br>Bottle put.</h2>
+    </div>
+    <div class="feats">
+      <div class="feat"><h3>Grip strips in the saddle</h3><p>Four soft TPU strips run the length of the curve, placed so every standard bottle rests on two of them and never on bare plastic.</p></div>
+      <div class="feat"><h3>A ribbed grip base</h3><p>The underside is soft and ribbed, so the wedge holds on wood, stone or glass. The same ribs lock two wedges together when you stack them.</p></div>
+      <div class="feat"><h3>Printed to order in Edmonds</h3><p>Each wedge is printed in one piece in Edmonds, Washington: a rigid PLA body with the grip printed in, not glued on.</p></div>
+    </div>
+    <div class="specs" id="specs"></div>
+  </section>
+
+  <section id="fit" class="shelf" aria-label="Fit check">
+    <div class="fit">
+      <div class="sechead" style="margin:0">
+        <span class="eyebrow">Fit check</span>
+        <h2>Will it hold your bottle?</h2>
+        <p class="lede">Most 750&nbsp;mL wine bottles measure 72 to 90&nbsp;mm across. Pick a style, or measure yours across the widest part of the body and slide to that number.</p>
+        <div class="gauge"><svg id="gauge" viewBox="0 0 320 64" role="img" aria-label="Diameter scale showing the range Bottle Staxx is built for"></svg></div>
+      </div>
+      <div class="panel">
+        <div class="chips" id="bottles" role="group" aria-label="Bottle style"></div>
+        <div class="field">
+          <label for="dia">Bottle diameter <output id="diaOut" for="dia">80 mm</output></label>
+          <input id="dia" type="range" min="60" max="100" step="0.5" value="80">
+        </div>
+        <div class="result" id="fitResult"><span class="pill" id="fitPill">Fits</span><span id="fitText"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="packs" class="shelf" aria-label="Packs">
+    <div class="sechead">
+      <span class="eyebrow">First batch</span>
+      <h2>One, two or four</h2>
+      <p class="lede">Stacking takes two, so the pair is where most people start. The first batch prints in small runs; get on the list and we'll write when yours is ready.</p>
+    </div>
+    <div class="packs" id="packList"></div>
+
+    <div class="panel" style="margin-top:20px">
+      <h3>Get on the first-batch list</h3>
+      <form id="batchForm" novalidate>
+        <div class="row">
+          <div class="field"><label for="bEmail">Email</label><input id="bEmail" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+          <div class="field"><label for="bPack">Pack</label>
+            <select id="bPack"><option>Single</option><option selected>Pair</option><option>Four-pack</option></select></div>
+        </div>
+        <div><button class="btn" type="submit">Save my spot</button></div>
+        <p class="status" id="batchStatus" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <section id="wineries" class="shelf" aria-label="For wineries">
+    <div class="winery">
+      <div class="sechead" style="margin:0">
+        <span class="eyebrow">For wineries and wine clubs</span>
+        <h2>Your logo on every wedge</h2>
+        <p class="lede">We print to order, so a logo run costs little more than a plain one. Your mark goes in the grip color or pressed into the body, in your colors.</p>
+        <ul class="uses">
+          <li><span>Tasting</span>Merch by the register that sells with the bottle.</li>
+          <li><span>Clubs</span>A useful extra in member shipments.</li>
+          <li><span>Gifts</span>Corporate and holiday gifts, packed in pairs.</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Ask for a sample with your logo</h3>
+        <form id="wineryForm" novalidate>
+          <div class="row">
+            <div class="field"><label for="wName">Your name</label><input id="wName" type="text" autocomplete="name" required></div>
+            <div class="field"><label for="wWinery">Winery or club</label><input id="wWinery" type="text" autocomplete="organization" required></div>
+          </div>
+          <div class="row">
+            <div class="field"><label for="wEmail">Email</label><input id="wEmail" type="email" autocomplete="email" required></div>
+            <div class="field"><label for="wQty">Wedges you'd order</label><input id="wQty" type="number" min="1" step="1" inputmode="numeric" placeholder="e.g. 100"></div>
+          </div>
+          <div class="field"><label for="wMsg">Anything else</label><textarea id="wMsg" placeholder="Colors, timing, where they'd sell"></textarea></div>
+          <div><button class="btn" type="submit">Request a sample</button></div>
+          <p class="status" id="wineryStatus" hidden></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="shelf" aria-label="Questions">
+    <div class="sechead"><span class="eyebrow">Questions</span><h2>Good to know</h2></div>
+    <div class="faq">
+      <div><h3>Why tip the bottle neck-down?</h3><p>A cork that dries out shrinks and lets air into the wine. With the neck a little low, the wine stays against the cork, the same reason cellars store bottles on their side.</p></div>
+      <div><h3>How do two stack?</h3><p>Flip one wedge over so its curve sits on the shelf, then set the second on it, ribs to ribs. Point the thick ends opposite ways for level, the same way for steeper.</p></div>
+      <div><h3>How do I clean it?</h3><p>Wipe it with a damp cloth or wash it by hand. Keep it out of the dishwasher and hot cars; PLA softens with heat.</p></div>
+      <div><h3>Can I pick colors?</h3><p>Yes. The body and the grip are separate colors, and the first colorways come with the first batch.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Bottle Staxx · Printed to order in Edmonds, Washington</span>
+    <span>© 2026 Bottle Staxx</span>
+  </footer>
+</div>
+
+<script>
+// ---- Product constants: change these when the final design is picked ----
+const P = { angle:7.5, length:100, width:60, thick:23.8, fitMin:72, fitMax:90 };
+const T = (d)=>Math.tan(d*Math.PI/180), S=(d)=>Math.sin(d*Math.PI/180), C=(d)=>Math.cos(d*Math.PI/180);
+const A = P.angle, L = P.length, t1 = P.thick, t0 = t1 - L*T(A);
+const BOTTLE = {d:80, H:300, body:175, shoulder:55, neck:30, cog:110};
+const SINK = 6;
+
+// ---- Wedge geometry (math coords, y up) ----
+function wedgeParts(){
+  const body=[[0,2.2],[L,2.2],[L,t1-0.8],[L-1.2,t1],[1.2,t0],[0,t0-0.8]];
+  const base=[[0,2.2]]; const pitch=5;
+  for(let x=0;x<L-0.01;x+=pitch){ base.push([x,0.9],[x+1.4,0],[x+3.6,0],[Math.min(x+pitch,L),0.9]); }
+  base.push([L,2.2]);
+  const strip=[[7,t0+7*T(A)+0.5],[L-7,t0+(L-7)*T(A)+0.5]];
+  return {body,base,strip,saddle:[[0,t0],[L,t1]]};
+}
+function xf(pts,o){
+  return pts.map(([x,y])=>{
+    if(o.mirror) x=L-x;
+    if(o.flip) y=-y;
+    const r=(o.rot||0)*Math.PI/180, c=Math.cos(r), s=Math.sin(r);
+    return [x*c-y*s+(o.tx||0), x*s+y*c+(o.ty||0)];
+  });
+}
+const svgPts = pts => pts.map(([x,y])=>x.toFixed(2)+","+(-y).toFixed(2)).join(" ");
+function drawWedge(o){
+  const w=wedgeParts();
+  const s=xf(w.strip,o);
+  return `<polygon points="${svgPts(xf(w.body,o))}" fill="var(--pla)" stroke="var(--pla-edge)" stroke-width=".7" stroke-linejoin="round"/>
+    <polygon points="${svgPts(xf(w.base,o))}" fill="var(--wine)"/>
+    <line x1="${s[0][0]}" y1="${-s[0][1]}" x2="${s[1][0]}" y2="${-s[1][1]}" stroke="var(--wine)" stroke-width="1.8" stroke-linecap="round"/>`;
+}
+function bottlePath(){
+  const {d,H,body,shoulder,neck}=BOTTLE, nb=(d-neck)/2, lip=H-14;
+  return `M0,-4 Q0,0 4,0 L${body},0 C${body+shoulder*.55},0 ${body+shoulder*.45},${-nb} ${body+shoulder},${-nb}
+    L${lip},${-nb} L${lip},${-nb+2} L${H},${-nb+2} L${H},${-nb-neck-2} L${lip},${-nb-neck-2} L${lip},${-nb-neck}
+    L${body+shoulder},${-nb-neck} C${body+shoulder*.45},${-nb-neck} ${body+shoulder*.55},${-d} ${body},${-d}
+    L4,${-d} Q0,${-d} 0,${-d+4} Z`;
+}
+function drawBottle(saddleL,saddleR){
+  // Neck-down: the base sits toward the thick (high) end, the neck points down the slope so wine covers the cork.
+  // Underside line = saddle line dropped by SINK; CoG centered over the wedge; the lip never goes below the shelf.
+  const th=Math.atan2(saddleR[1]-saddleL[1],saddleR[0]-saddleL[0]);
+  const nx=Math.sin(th), ny=-Math.cos(th);
+  const p0=[saddleL[0]+nx*SINK, saddleL[1]+ny*SINK];
+  const span=Math.hypot(saddleR[0]-saddleL[0],saddleR[1]-saddleL[1]);
+  let u=span*0.5+BOTTLE.cog;
+  const lipLift=(BOTTLE.d-BOTTLE.neck)/2-2;
+  const lipY=uu=>p0[1]+(uu-BOTTLE.H)*Math.sin(th)+lipLift*Math.cos(th);
+  if(Math.sin(th)>1e-6 && lipY(u)<0) u+= -lipY(u)/Math.sin(th);
+  const bx=p0[0]+u*Math.cos(th), by=p0[1]+u*Math.sin(th);
+  const deg=th*180/Math.PI;
+  return `<g transform="translate(${bx.toFixed(2)},${(-by).toFixed(2)}) rotate(${(-deg).toFixed(3)}) scale(-1,1)">
+    <path d="${bottlePath()}" fill="var(--glass-fill)" stroke="var(--glass)" stroke-width="1.3" stroke-linejoin="round"/>
+    <line x1="${BOTTLE.cog}" y1="${-BOTTLE.d/2-3}" x2="${BOTTLE.cog}" y2="${-BOTTLE.d/2+3}" stroke="var(--glass)" stroke-width="1"/>
+    <line x1="${BOTTLE.cog-3}" y1="${-BOTTLE.d/2}" x2="${BOTTLE.cog+3}" y2="${-BOTTLE.d/2}" stroke="var(--glass)" stroke-width="1"/></g>`;
+}
+function saddleOf(o){ const s=xf(wedgeParts().saddle,o); return s[0][0]<s[1][0]?s:[s[1],s[0]]; }
+
+const MODES=[
+  {id:"one", name:"One wedge", note:"neck-down tilt", angle:A, text:"One wedge on the shelf. The bottle rests neck-down on the grip strips, so the wine sits against the cork and keeps it from drying out."},
+  {id:"level", name:"Two, level", note:"thick ends opposite", angle:0, text:"Flip one wedge curve-down and set the other on it, ribs to ribs, thick ends pointing opposite ways. The tilts cancel and the bottle lies level, the classic cellar position. The wine still covers the cork."},
+  {id:"steep", name:"Two, steep", note:"thick ends together", angle:2*A, text:"Same stack with both thick ends on the same side. The tilts add up to a steeper neck-down lean, with the wine pressed right against the cork."},
+];
+function sceneFor(m){
+  const shelf=`<line x1="-120" y1="0" x2="290" y2="0" stroke="var(--ink)" stroke-width="1.6"/>`;
+  if(m.id==="one"){
+    const o={}; return shelf+drawBottle(...saddleOf(o))+drawWedge(o);
+  }
+  const bot={flip:true, rot:A, ty:t0*C(A)};
+  const a=xf([[0,0]],bot)[0];
+  const top = m.id==="level" ? {mirror:true, rot:A, tx:a[0], ty:a[1]} : {rot:A, tx:a[0], ty:a[1]};
+  return shelf+drawBottle(...saddleOf(top))+drawWedge(bot)+drawWedge(top);
+}
+const svg=document.getElementById("scene");
+svg.innerHTML=MODES.map((m,i)=>`<g class="st${i===0?" on":""}" data-i="${i}">${sceneFor(m)}</g>`).join("");
+
+let modeIdx=0, auto=true;
+const modesEl=document.getElementById("modes");
+MODES.forEach((m,i)=>{
+  const b=document.createElement("button"); b.type="button"; b.className="chip"; b.id="mode-"+m.id;
+  b.innerHTML=`${m.name}<small>${m.note}</small>`;
+  b.addEventListener("click",()=>{auto=false; setMode(i);});
+  modesEl.appendChild(b);
+});
+function setMode(i){
+  modeIdx=i;
+  svg.querySelectorAll(".st").forEach(g=>g.classList.toggle("on",+g.dataset.i===i));
+  modesEl.querySelectorAll(".chip").forEach((b,j)=>b.setAttribute("aria-pressed",j===i?"true":"false"));
+  document.getElementById("modeText").textContent=MODES[i].text;
+  document.getElementById("modeAngle").textContent=(MODES[i].angle===0?"0":MODES[i].angle)+"°";
+}
+setMode(0);
+if(!matchMedia("(prefers-reduced-motion: reduce)").matches){
+  setInterval(()=>{ if(auto && !document.hidden) setMode((modeIdx+1)%MODES.length); },3800);
+}
+
+document.getElementById("specs").innerHTML=
+  `<span><b>750 mL</b> bottles</span><span>Fits <b>${P.fitMin}–${P.fitMax} mm</b> across</span>`+
+  `<span><b>${P.length} × ${P.width} mm</b> footprint</span><span>Neck-down <b>${A}°</b>, stacks to <b>0°</b> or <b>${2*A}°</b></span>`+
+  `<span>PLA body · <b>TPU 90A</b> grip</span>`;
+
+// ---- Fit check ----
+const BOTTLES=[
+  {id:"cab", name:"Cabernet / Bordeaux", d:75},
+  {id:"syrah", name:"Syrah / Rhône", d:80},
+  {id:"burg", name:"Pinot / Chardonnay", d:81},
+  {id:"spark", name:"Sparkling", d:88},
+];
+const dia=document.getElementById("dia"), bottlesEl=document.getElementById("bottles");
+BOTTLES.forEach(b=>{
+  const c=document.createElement("button"); c.type="button"; c.className="chip"; c.dataset.d=b.d; c.id="bottle-"+b.id;
+  c.innerHTML=`${b.name}<small>about ${b.d} mm</small>`;
+  c.addEventListener("click",()=>{dia.value=b.d; renderFit();});
+  bottlesEl.appendChild(c);
+});
+function renderFit(){
+  const d=+dia.value;
+  document.getElementById("diaOut").textContent=(d%1?d.toFixed(1):d)+" mm";
+  bottlesEl.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",+c.dataset.d===d?"true":"false"));
+  const ok=d>=P.fitMin && d<=P.fitMax, box=document.getElementById("fitResult");
+  box.classList.toggle("no",!ok);
+  document.getElementById("fitPill").textContent=ok?"Fits":"Outside range";
+  document.getElementById("fitText").textContent= ok
+    ? `A ${d} mm bottle rests on two grip strips in the saddle, clear of the hard plastic.`
+    : d<P.fitMin ? `At ${d} mm the bottle sits low in the curve and may touch the hard plastic. Tell us the bottle and we'll check it.`
+                 : `At ${d} mm the bottle is wider than the curve is built for and rides on its edges. Tell us the bottle and we'll check it.`;
+  // gauge
+  const lo=60, hi=100, x=v=>10+(v-lo)/(hi-lo)*300;
+  let g=`<rect x="${x(P.fitMin)}" y="18" width="${x(P.fitMax)-x(P.fitMin)}" height="14" rx="3" fill="var(--glass-fill)" stroke="var(--glass)"/>`;
+  g+=`<line x1="10" y1="25" x2="310" y2="25" stroke="var(--rule)" stroke-width="2"/>`;
+  for(let v=lo; v<=hi; v+=10) g+=`<text x="${x(v)}" y="52" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" fill="var(--muted)">${v}</text><line x1="${x(v)}" y1="34" x2="${x(v)}" y2="40" stroke="var(--muted)"/>`;
+  g+=`<text x="${(x(P.fitMin)+x(P.fitMax))/2}" y="12" text-anchor="middle" font-family="DM Mono, monospace" font-size="10" fill="var(--glass)">built for ${P.fitMin}–${P.fitMax} mm</text>`;
+  g+=`<circle cx="${x(d)}" cy="25" r="6" fill="${ok?"var(--glass)":"var(--warn)"}" stroke="var(--surface)" stroke-width="2"/>`;
+  document.getElementById("gauge").innerHTML=g;
+}
+dia.addEventListener("input",renderFit);
+renderFit();
+
+// ---- Packs ----
+function stackIcon(n){
+  let s=""; const h=9;
+  for(let i=0;i<n;i++){ const y=36-(i+1)*h; s+=`<polygon points="2,${y+h} 58,${y+h} 58,${y+1} 2,${y+h-4}" fill="var(--pla)" stroke="var(--pla-edge)" stroke-width="1"/><rect x="2" y="${y+h-1.6}" width="56" height="1.6" fill="var(--wine)"/>`; }
+  return `<svg class="stackicon" viewBox="0 0 60 38" aria-hidden="true">${s}</svg>`;
+}
+const PACKS=[
+  {n:1, name:"Single", price:10, note:"One wedge for one bottle on a gentle tilt."},
+  {n:2, name:"Pair", price:18, note:"Stacks level or steep, or two bottles side by side.", pick:true},
+  {n:4, name:"Four-pack", price:30, note:"Two stacks, or a row on the counter. Best for gifts."},
+];
+document.getElementById("packList").innerHTML=PACKS.map(p=>`
+  <div class="pack${p.pick?" pick":""}">
+    ${p.pick?'<span class="badge">Most popular start</span>':""}
+    ${stackIcon(p.n)}
+    <h3>${p.name}</h3>
+    <div class="price">$${p.price}</div>
+    <div class="per">$${(p.price/p.n).toFixed(2)} per wedge</div>
+    <p>${p.note}</p>
+  </div>`).join("");
+
+// ---- Forms: post to Formspree once FORM_ENDPOINT is set; in the preview (or before it is set) say so honestly ----
+const FORM_ENDPOINT = "";  // e.g. "https://formspree.io/f/xxxxxxx"
+function wire(formId,statusId,kind,okMsg){
+  const f=document.getElementById(formId), s=document.getElementById(statusId);
+  f.addEventListener("submit",async e=>{
+    e.preventDefault();
+    const bad=[...f.querySelectorAll("[required]")].find(el=>!el.value.trim() || (el.type==="email" && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(el.value)));
+    s.hidden=false;
+    if(bad){ s.textContent="Add "+(bad.type==="email"?"a valid email address":"your "+bad.labels[0].textContent.toLowerCase())+" and try again."; bad.focus(); return; }
+    if(!FORM_ENDPOINT){ s.textContent="Signups open in a few days. Check back soon."; return; }
+    const data={form:kind, _subject:"Bottle Staxx: "+kind};
+    f.querySelectorAll("input,select,textarea").forEach(el=>{ data[el.labels[0].textContent.trim()]=el.value; if(el.type==="email") data.email=el.value; });
+    const btn=f.querySelector("button"); btn.disabled=true; s.textContent="Sending…";
+    try{
+      const r=await fetch(FORM_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(data)});
+      if(!r.ok) throw new Error(r.status);
+      s.textContent=okMsg; f.reset();
+    }catch(err){ s.textContent="That didn't go through. Check your connection and try again."; }
+    finally{ btn.disabled=false; }
+  });
+}
+wire("batchForm","batchStatus","First batch list","You're on the list. We'll email you when your pack is ready.");
+wire("wineryForm","wineryStatus","Winery sample request","Thanks. We'll be in touch about your sample within a couple of days.");
+</script>
+</body>
+</html>
