@@ -13,7 +13,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <style>html{color-scheme:light dark}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Bottle Staxx</title>
-<meta name="description" content="Bottle Staxx: the smallest wine rack there is. A grippy wedge for one 750 mL bottle that stacks level or steep. Printed to order in Edmonds, Washington.">
+<meta name="description" content="Bottle Staxx: the smallest wine rack there is. A grippy wedge for one bottle, 750 mL or 1.5 L magnum, that stacks level or steep. Printed to order in Edmonds, Washington.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Commissioner:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
@@ -169,7 +169,7 @@ footer{border-top:3px solid var(--ink);padding-block:28px 48px;display:flex;flex
     <div class="herobot">
       <div class="herotext">
         <h1 class="tag">The smallest wine rack there is.</h1>
-        <p class="lede">One bottle, any shelf, cork kept wet. A grippy wedge holds a 750&nbsp;mL bottle tipped slightly neck-down, so the wine stays against the cork. Stack two and it lies level, or turn one around and it leans steeper.</p>
+        <p class="lede">One bottle, any shelf, cork kept wet. A grippy wedge holds a 750&nbsp;mL bottle, or a 1.5&nbsp;L magnum, tipped slightly neck-down, so the wine stays against the cork. Stack two and it lies level, or turn one around and it leans steeper.</p>
       <div class="ctas">
         <a class="btn" href="#packs">Join the first batch</a>
         <a class="btn ghost" href="#wineries">Logo runs for wineries</a>
@@ -221,7 +221,7 @@ footer{border-top:3px solid var(--ink);padding-block:28px 48px;display:flex;flex
     <div class="sechead">
       <span class="eyebrow">Which bottles fit</span>
       <h2>The bottles you already buy</h2>
-      <p class="lede">Any standard 750&nbsp;mL wine bottle: Cabernet, Merlot, Pinot, Syrah, Chardonnay, most sparkling. If it came from a wine shelf in a normal-size bottle, it fits.</p>
+      <p class="lede">Any standard 750&nbsp;mL wine bottle: Cabernet, Merlot, Pinot, Syrah, Chardonnay, most sparkling, and 1.5&nbsp;L magnums too. If it came from a wine shelf, it fits.</p>
     </div>
     <div class="lineup" id="lineup"></div>
   </section>
@@ -329,9 +329,9 @@ if(!matchMedia("(prefers-reduced-motion: reduce)").matches){
 }
 
 document.getElementById("specs").innerHTML=
-  `<span>Fits standard <b>750 mL</b> wine bottles</span>`+
+  `<span>Fits standard <b>750 mL</b> bottles and <b>1.5 L</b> magnums</span>`+
   `<span><b>${P.length} × ${P.width} mm</b> footprint</span><span>Neck-down <b>${A}°</b>, stacks to <b>0°</b> or <b>${2*A}°</b></span>`+
-  `<span>PLA body · <b>TPU 90A</b> grip</span>`;
+  `<span>PLA body · <b>TPU 95A</b> grip</span>`;
 
 // ---- Which bottles fit: silhouettes to scale (mm) ----
 const LINEUP=[
@@ -340,7 +340,7 @@ const LINEUP=[
   {name:"Syrah & Rhône", note:"heavier glass", d:80, H:300, body:175, sh:55, neck:30, ok:true},
   {name:"Sparkling", note:"most Champagne and Cava", d:88, H:300, body:165, sh:75, neck:30, ok:true},
   {name:"Half bottles", note:"375 mL is too small", d:62, H:240, body:150, sh:45, neck:26, ok:false},
-  {name:"Magnums", note:"1.5 L is too big", d:105, H:350, body:220, sh:70, neck:34, ok:false},
+  {name:"Magnums", note:"1.5 L fits too", d:105, H:350, body:220, sh:70, neck:34, ok:true},
 ];
 function silhouette(b){
   // upright bottle, base at y=0, drawn in mm; shared scale so sizes compare honestly
